@@ -1,0 +1,44 @@
+{
+  "name": "@vldslv-a/use-storage-hooks",
+  "version": "1.0.0",
+  "description": "A lightweight React library that provides hooks for interacting with localStorage and sessionStorage. Simplifies state management using browser storage with clean APIs.",
+  "scripts": {
+    "lint:js": "eslint .",
+    "lint:js:fix": "eslint . --fix",
+    "check-types": "tsc"
+  },
+  "author": "vldslv-a",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.10.10",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-decd7b8-20250118",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-perf": "^3.3.3",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "eslint-plugin-sonarjs": "^3.0.1",
+    "eslint-plugin-sort-destructure-keys": "^2.0.0",
+    "globals": "^15.14.0",
+    "prettier": "3.4.2",
+    "typescript": "~5.7.3",
+    "typescript-eslint": "^8.21.0",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "knip": "^5.43.1"
+  }
+}
