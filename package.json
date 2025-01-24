@@ -29,11 +29,12 @@
     }
   },
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vldslv-a/use-storage-hooks.git"
+    "url": "https://github.com/vldslv-a/use-storage-hooks.git"
   },
   "bugs": {
     "url": "https://github.com/vldslv-a/use-storage-hooks/issues"
