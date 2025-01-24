@@ -1,74 +1,126 @@
 # use-storage-hooks
 
-This library provides two hooks for managing state with `localStorage` and `sessionStorage` in a React application.
+`use-storage-hooks` is a custom React hook library that provides an easy way to interact with `localStorage` and `sessionStorage`. This library exports two hooks: `useLocalStorage` and `useSessionStorage`.
 
 ## Installation
 
+To install the library, use npm or yarn:
+
 ```bash
 npm install use-storage-hooks
+```
+
+or
+
+```bash
+yarn add use-storage-hooks
 ```
 
 ## Hooks
 
 ### `useLocalStorage`
 
-A hook to manage state with `localStorage`.
+This hook allows you to manage state that is synchronized with `localStorage`.
 
 #### Usage
 
-```tsx
+```javascript
 import { useLocalStorage } from 'use-storage-hooks';
 
-const MyComponent = () => {
-    const [value, setValue] = useLocalStorage<string>('myKey');
-
-    return (
-        <div>
-            <input
-                type="text"
-                value={value || ''}
-                onChange={(e) => setValue(e.target.value)}
-            />
-        </div>
-    );
-};
+```javascript
+const [value, setValue] = useLocalStorage<number>('key');
 ```
+
+#### Parameters
+
+- `key` (string): The key under which the value is stored in `localStorage`.
+
+#### Returns
+
+- `value` (T | undefined): The current value associated with the key. It returns the value of the generic type `T` or `undefined`.
+- `setValue` (function): A function to update the value. It accepts a value of type `T` or `undefined`. If `undefined` is passed, the value will be removed from `localStorage`.
 
 ### `useSessionStorage`
 
-A hook to manage state with `sessionStorage`.
+This hook allows you to manage state that is synchronized with `sessionStorage`.
 
 #### Usage
 
-```tsx
+```javascript
 import { useSessionStorage } from 'use-storage-hooks';
 
-const MyComponent = () => {
-    const [value, setValue] = useSessionStorage<string>('myKey');
+const [value, setValue] = useSessionStorage<number>('key');
+```
+
+#### Parameters
+
+- `key` (string): The key under which the value is stored in `sessionStorage`.
+
+#### Returns
+
+- `value` (T | undefined): The current value associated with the key. It returns the value of the generic type `T` or `undefined`.
+- `setValue` (function): A function to update the value. It accepts a value of type `T` or `undefined`. If `undefined` is passed, the value will be removed from `sessionStorage`.
+
+### Example with `useLocalStorage` and `useSessionStorage`
+
+```javascript
+import React from 'react';
+import { useLocalStorage, useSessionStorage } from 'use-storage-hooks';
+
+function ComponentA() {
+    const [localValue, setLocalValue] = useLocalStorage<number>('local-key');
+    const [sessionValue, setSessionValue] = useSessionStorage<number>('session-key');
 
     return (
         <div>
-            <input
-                type="text"
-                value={value || ''}
-                onChange={(e) => setValue(e.target.value)}
-            />
+            <p>Local Storage Value: {localValue}</p>
+            <button onClick={() => setLocalValue(Math.random())}>Generate Random Local Number</button>
+            <button onClick={() => setLocalValue(undefined)}>Remove Local Value</button>
+
+            <p>Session Storage Value: {sessionValue}</p>
+            <button onClick={() => setSessionValue(Math.random())}>Generate Random Session Number</button>
+            <button onClick={() => setSessionValue(undefined)}>Remove Session Value</button>
         </div>
     );
-};
+}
+
+function ComponentB() {
+    const [localValue] = useLocalStorage<number>('local-key');
+    const [sessionValue] = useSessionStorage<number>('session-key');
+
+    return (
+        <div>
+            <p>Local Storage Value: {localValue}</p>
+            <p>Session Storage Value: {sessionValue}</p>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div>
+            <ComponentA />
+            <ComponentB />
+        </div>
+    );
+}
+
+export default App;
 ```
 
-## API
+In this example, `ComponentA` and `ComponentB` share the same keys for both `localStorage` (`'local-key'`) and `sessionStorage` (`'session-key'`). When the values are updated in `ComponentA`, they are immediately reflected in `ComponentB`. The "Generate Random Local Number" and "Generate Random Session Number" buttons set new random numbers, and the "Remove" buttons remove the values from `localStorage` and `sessionStorage` respectively.
 
-### `useLocalStorage<T>(key: string): [T | undefined, (newValue?: T) => void]`
+Both hooks use generics to allow you to specify the type of the stored value. By default, the type is `unknown`, but you can specify a different type when using the hooks.
 
-- `key`: The key under which the value is stored in `localStorage`.
-- Returns a tuple containing the stored value and a function to update it.
+#### Example with Generics
 
-### `useSessionStorage<T>(key: string): [T | undefined, (newValue?: T) => void]`
+```javascript
+import { useLocalStorage } from 'use-storage-hooks';
 
-- `key`: The key under which the value is stored in `sessionStorage`.
-- Returns a tuple containing the stored value and a function to update it.
+const [value, setValue] = useLocalStorage<number>('key');
+```
+
+In this example, `value` will be of type `number` and `setValue` will accept a value of type `number` or `undefined`.
 
 ## License
 
