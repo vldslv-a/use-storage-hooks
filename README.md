@@ -27,7 +27,6 @@ This hook allows you to manage state that is synchronized with `localStorage`.
 ```javascript
 import { useLocalStorage } from 'use-storage-hooks';
 
-```javascript
 const [value, setValue] = useLocalStorage<number>('key');
 ```
 
