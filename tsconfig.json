@@ -1,6 +1,7 @@
 {
   "compilerOptions":{
-    "baseUrl":"./",
+    "outDir": "./dist",
+    "baseUrl": "./",
     "target":"ESNext",
     "module":"commonjs",
     "esModuleInterop":true,
@@ -15,7 +16,8 @@
     "resolveJsonModule":true,
     "sourceMap":true,
     "types":[
-      "node"
+      "node",
+      "jest"
     ],
     "paths":{
       "*":["./src/*", "*"]
