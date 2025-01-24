@@ -7,7 +7,7 @@ export class StorageManager {
     this.storage = storage;
   }
 
-  subscribe(onStoreChange: () => void) {
+  subscribe(onStoreChange: VoidFunction) {
     this.listeners = [...this.listeners, onStoreChange];
 
     return () => {
@@ -44,6 +44,7 @@ export class StorageManager {
   removeItem(key: string) {
     try {
       this.storage.removeItem(key);
+
       this.listeners.forEach((listener) => {
         listener();
       });

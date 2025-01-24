@@ -1,12 +1,12 @@
 import { FallbackStorage } from 'models/FallbackStorage';
 import { StorageManager } from 'models/StorageManager';
 
-type StorageType = 'localStorage' | 'sessionStorage';
-
-export const getStorage = (storageType: StorageType) => {
+export const getStorage = (storageType: 'localStorage' | 'sessionStorage') => {
   try {
     return new StorageManager(window[storageType]);
-  } catch {
+  } catch (e) {
+    console.error(e);
+
     return new StorageManager(new FallbackStorage());
   }
 };

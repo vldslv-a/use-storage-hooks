@@ -2,7 +2,7 @@ import { useCallback, useEffect, useSyncExternalStore } from 'react';
 import type { StorageManager } from 'models/StorageManager';
 
 export const useStorageManager = <T>(storageManager: StorageManager, key: string) => {
-  const subscribe = useCallback((listener: () => void) => storageManager.subscribe(listener), [storageManager]);
+  const subscribe = useCallback((listener: VoidFunction) => storageManager.subscribe(listener), [storageManager]);
 
   const getSnapShot = useCallback(() => storageManager.getItem<T>(key), [key, storageManager]);
 
