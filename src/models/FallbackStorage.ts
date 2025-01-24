@@ -10,10 +10,6 @@ export class FallbackStorage implements Storage {
   }
 
   getItem(key: string): string | null {
-    if (!Object.prototype.hasOwnProperty.call(this.store, key)) {
-      return null;
-    }
-
     return this.store[key] ?? null;
   }
 
