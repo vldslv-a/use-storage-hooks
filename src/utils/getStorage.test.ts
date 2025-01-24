@@ -24,6 +24,7 @@ describe('getStorage', () => {
   });
 
   it('returns StorageManager with FallbackStorage on error', () => {
+    jest.spyOn(console, 'error').mockImplementation(jest.fn);
     const originalLocalStorage = window.localStorage;
     Object.defineProperty(window, 'localStorage', {
       get: () => {
@@ -33,6 +34,7 @@ describe('getStorage', () => {
 
     const storageManager = getStorage('localStorage');
     expect(storageManager).toBeInstanceOf(StorageManager);
+    expect(console.error).toHaveBeenCalled();
     // @ts-expect-error storage is private
     expect(storageManager.storage).toBeInstanceOf(FallbackStorage);
 
