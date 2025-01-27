@@ -1,7 +1,8 @@
 {
   "name": "use-storage-hooks",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A lightweight React library that provides hooks for interacting with localStorage and sessionStorage. Simplifies state management using browser storage with clean APIs.",
+  "type": "module",
   "scripts": {
     "vite:build": "vite build",
     "lint:js": "eslint .",
@@ -27,10 +28,6 @@
       "import": "./dist/use-storage-hooks.es.js",
       "require": "./dist/use-storage-hooks.umd.js"
     }
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public"
   },
   "repository": {
     "type": "git",

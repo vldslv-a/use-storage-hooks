@@ -3,7 +3,8 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "target":"ESNext",
-    "module":"commonjs",
+    "module":"ESNext",
+    "moduleResolution": "bundler",
     "esModuleInterop":true,
     "forceConsistentCasingInFileNames":true,
     "strict":true,
@@ -13,7 +14,6 @@
     "noUncheckedIndexedAccess":true,
     "noUnusedLocals":true,
     "noUnusedParameters":true,
-    "resolveJsonModule":true,
     "sourceMap":true,
     "types":[
       "node",
