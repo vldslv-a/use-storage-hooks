@@ -1,6 +1,9 @@
 # use-storage-hooks
 
-`use-storage-hooks` is a custom React hook library that provides an easy way to interact with `localStorage` and `sessionStorage`. This library exports two hooks: `useLocalStorage` and `useSessionStorage`.
+`use-storage-hooks` is a lightweight, easy-to-use library that provides React hooks for working with browser storage (`localStorage` and `sessionStorage`). It simplifies state management by enabling seamless integration of persistent storage into your React components.
+
+## Why use `use-storage-hooks`?
+This library provides a hassle-free solution for managing state persistence across sessions. Whether you need to store user preferences or temporary data, `use-storage-hooks` helps you integrate browser storage without repetitive boilerplate code.
 
 ## Installation
 
