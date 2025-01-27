@@ -1,6 +1,6 @@
 {
   "name": "use-storage-hooks",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A lightweight React library that provides hooks for interacting with localStorage and sessionStorage. Simplifies state management using browser storage with clean APIs.",
   "type": "module",
   "scripts": {
