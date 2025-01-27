@@ -26,12 +26,18 @@ jobs:
         run: npm run vite:build
 
       - name: Update package.json version
-        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+        run: |
+          current_version=$(node -p "require('./package.json').version")
+          if [ "$current_version" != "${{ github.event.release.tag_name }}" ]; then
+            npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+          else
+            echo "Version not changed. Skipping npm version."
+          fi
 
-      # - name: Publish package on NPM.js 
-      #   run: npm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Publish package on NPM.js 
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       - name: Commit changes
         run: |
