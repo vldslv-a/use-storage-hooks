@@ -15,11 +15,11 @@ export class StorageManager {
     };
   }
 
-  getItem<T>(key: string): T | undefined {
+  getItem(key: string): string | undefined {
     try {
       const item = this.storage.getItem(key);
 
-      return item ? (JSON.parse(item) as T) : undefined;
+      return item ?? undefined;
     } catch (e) {
       console.error(e);
     }

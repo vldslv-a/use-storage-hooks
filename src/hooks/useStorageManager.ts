@@ -1,12 +1,20 @@
-import { useCallback, useEffect, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import type { StorageManager } from 'models/StorageManager';
 
 export const useStorageManager = <T>(storageManager: StorageManager, key: string) => {
   const subscribe = useCallback((listener: VoidFunction) => storageManager.subscribe(listener), [storageManager]);
 
-  const getSnapShot = useCallback(() => storageManager.getItem<T>(key), [key, storageManager]);
+  const getSnapShot = useCallback(() => storageManager.getItem(key), [key, storageManager]);
 
-  const storeValue = useSyncExternalStore<T | undefined>(subscribe, getSnapShot);
+  const storeValue = useSyncExternalStore<string | undefined>(subscribe, getSnapShot);
+
+  const value = useMemo(() => {
+    if (!storeValue) {
+      return undefined;
+    }
+
+    return JSON.parse(storeValue) as T;
+  }, [storeValue]);
 
   const changeValue = useCallback(
     (newValue?: T) => {
@@ -31,5 +39,5 @@ export const useStorageManager = <T>(storageManager: StorageManager, key: string
     };
   }, [storageManager]);
 
-  return [storeValue, changeValue] as const;
+  return [value, changeValue] as const;
 };

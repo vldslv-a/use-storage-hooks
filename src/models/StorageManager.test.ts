@@ -13,7 +13,7 @@ describe('StorageManager', () => {
   it('should set and get an item', () => {
     storage.setItem('key1', 'value1');
 
-    expect(storage.getItem('key1')).toBe('value1');
+    expect(storage.getItem('key1')).toBe('"value1"');
   });
 
   it('should return undefined for non-existing key', () => {
@@ -45,12 +45,18 @@ describe('StorageManager', () => {
     expect(storage.getItem('key2')).toBeUndefined();
   });
 
-  it('should handle JSON parse error in getItem', () => {
+  it('should handle error in getItem', () => {
     jest.spyOn(console, 'error').mockImplementation(jest.fn);
 
-    fallbackStorage.setItem('key1', 'invalid JSON');
+    const faultyStorage = {
+      getItem: jest.fn(() => {
+        throw new Error('Test error');
+      }),
+    } as unknown as Storage;
 
-    expect(storage.getItem('key1')).toBeUndefined();
+    const faultyStorageManager = new StorageManager(faultyStorage);
+
+    faultyStorageManager.getItem('key1');
     expect(console.error).toHaveBeenCalled();
   });
 
