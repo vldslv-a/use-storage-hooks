@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import type { StorageManager } from 'models/StorageManager';
 
+const getServerSnapshot = () => undefined;
+
 export const useStorageManager = <T>(storageManager: StorageManager, key: string) => {
   const subscribe = useCallback((listener: VoidFunction) => storageManager.subscribe(listener), [storageManager]);
 
   const getSnapShot = useCallback(() => storageManager.getItem(key), [key, storageManager]);
 
-  const storeValue = useSyncExternalStore<string | undefined>(subscribe, getSnapShot);
+  const storeValue = useSyncExternalStore<string | undefined>(subscribe, getSnapShot, getServerSnapshot);
 
   const value = useMemo(() => {
     if (!storeValue) {
