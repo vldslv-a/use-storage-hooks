@@ -21,6 +21,7 @@ export class StorageManager {
 
       return item ?? undefined;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -37,6 +38,7 @@ export class StorageManager {
         listener();
       });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -49,6 +51,7 @@ export class StorageManager {
         listener();
       });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }

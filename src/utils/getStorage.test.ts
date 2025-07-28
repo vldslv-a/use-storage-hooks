@@ -34,6 +34,7 @@ describe('getStorage', () => {
 
     const storageManager = getStorage('localStorage');
     expect(storageManager).toBeInstanceOf(StorageManager);
+    // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalled();
     // @ts-expect-error storage is private
     expect(storageManager.storage).toBeInstanceOf(FallbackStorage);

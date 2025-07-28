@@ -57,6 +57,7 @@ describe('StorageManager', () => {
     const faultyStorageManager = new StorageManager(faultyStorage);
 
     faultyStorageManager.getItem('key1');
+    // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalled();
   });
 
@@ -67,6 +68,7 @@ describe('StorageManager', () => {
     circularReference.myself = circularReference;
 
     storage.setItem('key1', circularReference);
+    // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalled();
   });
 
@@ -80,6 +82,7 @@ describe('StorageManager', () => {
     const faultyStorageManager = new StorageManager(faultyStorage);
 
     faultyStorageManager.removeItem('key1');
+    // eslint-disable-next-line no-console
     expect(console.error).toHaveBeenCalled();
   });
 
